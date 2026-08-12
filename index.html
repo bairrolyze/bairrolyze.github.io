@@ -189,22 +189,25 @@
       background:radial-gradient(circle,rgba(120,110,255,0.4),transparent 62%);filter:blur(20px)}
     .phone{position:absolute}
     /* phone frame: thin titanium rail + slim black bezel — Galaxy-Note style */
-    .device{position:relative;display:inline-block;width:100%;padding:1.7%;border-radius:13%/6%;
-      background:linear-gradient(150deg,#33373f 0%,#0d0f14 26%,#05060a 60%,#22252d 100%);
-      box-shadow:0 0 0 1px rgba(214,224,240,0.38), inset 0 1px 1px rgba(255,255,255,0.16), inset 0 -1px 2px rgba(0,0,0,0.65), var(--shadow)}
+    /* Galaxy-Note frame: matte black, slim uniform bezel, punch-hole camera, full image (no crop, no silver rail) */
+    .device{position:relative;display:inline-block;width:100%;padding:2%;border-radius:13%/6%;
+      background:#0a0b0f;
+      box-shadow:0 0 0 1px rgba(255,255,255,0.05), inset 0 0 0 1.5px rgba(255,255,255,0.05), var(--shadow)}
     /* soft brand glow hugging the phone so it pops off the page */
     .device::before{content:"";position:absolute;inset:-15% -11%;z-index:-1;border-radius:34%;
       background:radial-gradient(58% 56% at 50% 44%,rgba(124,110,255,0.48),rgba(58,150,255,0.22) 54%,transparent 72%);
       filter:blur(32px)}
-    /* black glass front: slim uniform bezel around a full-bleed screenshot; NO overflow clip so nothing gets cut */
-    .device .screen{position:relative;display:block;border-radius:11%/5.1%;background:#000;padding:1.9%;
-      box-shadow:inset 0 0 0 1px rgba(255,255,255,0.06)}
-    /* gentle screen-corner rounding — small enough the status bar & nav row never clip */
-    .device .screen img{display:block;width:100%;height:auto;border-radius:4%/1.8%}
+    /* black glass front: full-bleed screenshot, corners rounded, nothing cut */
+    .device .screen{position:relative;display:block;border-radius:10.5%/4.8%;overflow:hidden;background:#000}
+    .device .screen img{display:block;width:100%;height:auto}
+    /* punch-hole camera, centred in the status bar */
+    .device .screen::after{content:"";position:absolute;top:2.1%;left:50%;transform:translateX(-50%);
+      width:3.1%;aspect-ratio:1;border-radius:50%;background:#000;z-index:4;
+      box-shadow:inset 0 0 3px rgba(70,110,180,0.9)}
     .hero-visual .phone{top:50%;left:50%}
     .hero-visual .p-main{width:244px;z-index:3;transform:translate(-50%,-50%)}
-    .hero-visual .p-back{width:224px;z-index:2;transform:perspective(1600px) translate(-110%,-45%) rotateY(22deg) scale(0.92);opacity:.96}
-    .hero-visual .p-back2{width:224px;z-index:1;transform:perspective(1600px) translate(10%,-45%) rotateY(-22deg) scale(0.92);opacity:.93}
+    .hero-visual .p-back{width:228px;z-index:2;transform:perspective(1700px) translate(-112%,-46%) rotateY(31deg) scale(0.9);opacity:.97}
+    .hero-visual .p-back2{width:228px;z-index:1;transform:perspective(1700px) translate(12%,-46%) rotateY(-31deg) scale(0.9);opacity:.95}
     @media(max-width:960px){
       .hero{grid-template-columns:1fr;gap:10px;padding-top:52px}
       .hero-visual{height:460px;margin-top:20px}
@@ -215,6 +218,19 @@
     @media(max-width:640px){
       .hero-visual .glow{width:300px;height:300px}
     }
+
+    /* ---------- Screenshot gallery: clean, authentic, no frame, glow behind ---------- */
+    .gallery-sec{padding-top:22px}
+    .gallery{display:flex;gap:32px;overflow-x:auto;padding:36px max(6vw,20px) 46px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+    .gallery::-webkit-scrollbar{height:8px}
+    .gallery::-webkit-scrollbar-track{background:transparent}
+    .gallery::-webkit-scrollbar-thumb{background:rgba(140,150,255,.35);border-radius:8px}
+    .gshot{position:relative;flex:0 0 auto;width:226px;scroll-snap-align:center}
+    .gshot::before{content:"";position:absolute;inset:-14% -10%;z-index:-1;border-radius:30%;
+      background:radial-gradient(56% 54% at 50% 44%,rgba(124,110,255,0.44),rgba(58,150,255,0.20) 54%,transparent 72%);filter:blur(30px)}
+    .gshot img{display:block;width:100%;height:auto;border-radius:26px;
+      box-shadow:0 26px 60px rgba(2,4,12,.55),0 0 0 1px rgba(255,255,255,.06)}
+    @media(max-width:640px){.gshot{width:184px}.gallery{gap:22px}}
 
     /* ---------- Stats ---------- */
     .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin:26px 0 8px;padding:26px;border:1px solid var(--border);border-radius:var(--radius);background:var(--panel);box-shadow:var(--card-shadow)}
@@ -561,6 +577,34 @@
         </div>
       </div>
 
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery" class="gallery-sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-tag">A closer look</div>
+        <h2>Every angle on a neighbourhood</h2>
+        <p>Real screens from the app — the score and category cards, the live map and transit, the day-by-hour Time Machine, the multi-year Timeline, and the AI-written verdict. Scroll through.</p>
+      </div>
+    </div>
+    <div class="gallery">
+      <div class="gshot"><img src="images/shots/01.jpg" alt="Bairrolyze home and search screen" loading="lazy"/></div>
+      <div class="gshot"><img src="images/shots/02.jpg" alt="Neighbourhood score with category cards" loading="lazy"/></div>
+      <div class="gshot"><img src="images/shots/07.jpg" alt="Every nearby amenity on the interactive map" loading="lazy"/></div>
+      <div class="gshot"><img src="images/shots/06.jpg" alt="Live transport with real arrival times" loading="lazy"/></div>
+      <div class="gshot"><img src="images/shots/10.jpg" alt="Time Machine — how the area changes by the hour" loading="lazy"/></div>
+      <div class="gshot"><img src="images/shots/11.jpg" alt="Timeline — how the neighbourhood evolved over years" loading="lazy"/></div>
+      <div class="gshot"><img src="images/shots/12.jpg" alt="Key milestones in the neighbourhood's story" loading="lazy"/></div>
+      <div class="gshot"><img src="images/shots/13.jpg" alt="AI-written neighbourhood overview and verdict" loading="lazy"/></div>
+      <div class="gshot"><img src="images/shots/08.jpg" alt="Neighbourhood DNA radar" loading="lazy"/></div>
+      <div class="gshot"><img src="images/shots/09.jpg" alt="What is reachable in a 5, 10 or 20 minute walk" loading="lazy"/></div>
+      <div class="gshot"><img src="images/shots/03.jpg" alt="Education places within reach" loading="lazy"/></div>
+      <div class="gshot"><img src="images/shots/04.jpg" alt="Safety score and nearby services" loading="lazy"/></div>
+      <div class="gshot"><img src="images/shots/05.jpg" alt="Shopping and everyday errands nearby" loading="lazy"/></div>
+      <div class="gshot"><img src="images/shots/14.jpg" alt="Profile — lifestyle personas, language and country" loading="lazy"/></div>
+      <div class="gshot"><img src="images/shots/15.jpg" alt="Explore and pick an area to analyse" loading="lazy"/></div>
     </div>
   </section>
 
