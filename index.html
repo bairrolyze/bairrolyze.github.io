@@ -178,7 +178,7 @@
     .hero{padding:74px 0 40px;display:grid;grid-template-columns:1.05fr 0.95fr;gap:30px;align-items:center}
     .eyebrow{display:inline-flex;align-items:center;gap:9px;padding:7px 14px;border-radius:30px;background:var(--panel);border:1px solid var(--border);font-size:13px;color:var(--muted);margin-bottom:22px}
     .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
-    h1{font-size:clamp(38px,5.4vw,62px);line-height:1.04;letter-spacing:-1.6px;font-weight:850}
+    h1{font-size:clamp(33px,7vw,62px);line-height:1.05;letter-spacing:-1.4px;font-weight:850}
     .hero p.sub{margin-top:20px;font-size:clamp(16px,2vw,19px);color:var(--muted);max-width:540px}
     .hero .btns{margin-top:34px}
     .hero-note{margin-top:16px;font-size:13px;color:var(--muted-2)}
@@ -209,10 +209,13 @@
     .hero-visual .p-back{width:228px;z-index:2;transform:perspective(1700px) translate(-112%,-46%) rotateY(31deg) scale(0.9);opacity:.97}
     .hero-visual .p-back2{width:228px;z-index:1;transform:perspective(1700px) translate(12%,-46%) rotateY(-31deg) scale(0.9);opacity:.95}
     @media(max-width:960px){
-      .hero{grid-template-columns:1fr;gap:10px;padding-top:52px}
-      .hero-visual{height:460px;margin-top:20px}
+      .hero{grid-template-columns:1fr;gap:6px;padding-top:50px}
+      /* let the single hero phone flow in normal document order so it is never clipped */
+      .hero-visual{height:auto;margin-top:26px;padding-bottom:8px}
+      .hero-visual .glow{width:min(80vw,420px);height:min(80vw,420px)}
       .hero-visual .p-back,.hero-visual .p-back2{display:none}
-      .hero-visual .p-main{width:238px}
+      .hero-visual .phone{position:relative}
+      .hero-visual .p-main{position:relative;top:auto;left:auto;transform:none;width:min(280px,72vw)}
     }
     /* keep the decorative hero glow inside the viewport on small screens */
     @media(max-width:640px){
@@ -230,7 +233,7 @@
       background:radial-gradient(56% 54% at 50% 44%,rgba(124,110,255,0.44),rgba(58,150,255,0.20) 54%,transparent 72%);filter:blur(30px)}
     .gshot img{display:block;width:100%;height:auto;border-radius:26px;
       box-shadow:0 26px 60px rgba(2,4,12,.55),0 0 0 1px rgba(255,255,255,.06)}
-    @media(max-width:640px){.gshot{width:184px}.gallery{gap:22px}}
+    @media(max-width:640px){.gshot{width:min(64vw,240px)}.gallery{gap:20px;scroll-padding-left:20px}}
 
     /* ---------- Stats ---------- */
     .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin:26px 0 8px;padding:26px;border:1px solid var(--border);border-radius:var(--radius);background:var(--panel);box-shadow:var(--card-shadow)}
